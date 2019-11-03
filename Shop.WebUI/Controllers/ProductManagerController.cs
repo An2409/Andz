@@ -11,13 +11,13 @@ namespace Shop.WebUI.Controllers
 {
     public class ProductManagerController : Controller
     {
-        private ProductRepository context;
-        private ProductCategoryRepository productCategories;
+        private BaseRepository<Product> context;
+        private BaseRepository<ProductCategory> productCategories;
 
         public ProductManagerController()
         {
-            context = new ProductRepository();
-            productCategories = new ProductCategoryRepository();
+            context = new BaseRepository<Product>();
+            productCategories = new BaseRepository<ProductCategory>();
         }
         // GET: ProductManager
         public ActionResult Index()
