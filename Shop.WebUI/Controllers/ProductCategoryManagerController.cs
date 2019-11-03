@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Core.Contracts;
 using Core.Models;
 
 namespace Shop.WebUI.Controllers
@@ -11,11 +12,15 @@ namespace Shop.WebUI.Controllers
     public class ProductCategoryManagerController : Controller
     {
         // GET: ProductCategory
-        private BaseRepository<ProductCategory> context;
-
-        public ProductCategoryManagerController()
+        private IBaseRepository<ProductCategory> context;
+        //private ProductCategoryRepository context;
+        //Model ProductCategory se duoc inject vao
+        //setup interface va class implement tu interface dó
+        //public ProductCategoryManagerController(IBaseRepository<ProductCategory> productCaterogy)
+        public ProductCategoryManagerController(IBaseRepository<ProductCategory> productCaterogy)
         {
-            context = new BaseRepository<ProductCategory>();
+            context = productCaterogy;
+            //context = new ProductCategoryRepository();
         }
         // GET: ProductManager
         public ActionResult Index()

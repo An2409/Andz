@@ -10,7 +10,6 @@ namespace Core.Models
 {
     public class Product : BaseEntity
     {
-        public string Id { get; set; }
         [StringLength(20)]
         [DisplayName("Product Name")]
         public string Name { get; set; }

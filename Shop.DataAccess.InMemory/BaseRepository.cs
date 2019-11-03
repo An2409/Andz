@@ -5,11 +5,12 @@ using System.Net;
 using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Contracts;
 using Core.Models;
 
 namespace Shop.DataAccess.InMemory
 {
-    public class BaseRepository<T> where T: BaseEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T: BaseEntity
     {
         private ObjectCache cache = MemoryCache.Default;
         private List<T> items;
