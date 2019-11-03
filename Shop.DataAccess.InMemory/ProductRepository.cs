@@ -66,13 +66,9 @@ namespace Shop.DataAccess.InMemory
         {
             Product product = products.Find(p => p.Id == Id);
             if (product != null)
-            {
                 products.Remove(product);
-            }
-            else
-            {
+            return;
                 throw new Exception("Product deleted");
-            }
         }
     }
 }
