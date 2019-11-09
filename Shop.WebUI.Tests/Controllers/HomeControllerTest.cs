@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using Core.Contracts;
+using Core.Models;
+using Core.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shop.WebUI;
 using Shop.WebUI.Controllers;
+using Shop.WebUI.Tests.Mocks;
 
 namespace Shop.WebUI.Tests.Controllers
 {
@@ -13,42 +17,15 @@ namespace Shop.WebUI.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void IndexPageDoesReturnProducts()
         {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void About()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
+            IBaseRepository<Product> productContext = new MockContext<Product>();
+            IBaseRepository<ProductCategory> productCategoryContext = new MockContext<ProductCategory>();
+            //productContext.Insert(new Product());
+            HomeController controller = new HomeController(productContext, productCategoryContext);
+            var result = controller.Index() as ViewResult;
+            var viewModel = (ProductListViewModel)result.ViewData.Model; 
+            Assert.AreEqual(0, viewModel.Products.Count());
         }
     }
 }

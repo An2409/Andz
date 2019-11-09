@@ -1,12 +1,8 @@
 using System;
-using Core.Contracts;
-using Core.Models;
-using Shop.DataAccess.InMemory;
-using Shop.DataAccess.SQL;
-using Shop.Services;
+
 using Unity;
 
-namespace Shop.WebUI
+namespace Shop.WebUI.Tests
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.
@@ -46,12 +42,6 @@ namespace Shop.WebUI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IBaseRepository<Product>, SQLRepository<Product>>();
-            container.RegisterType<IBaseRepository<ProductCategory>, SQLRepository<ProductCategory>>();
-            container.RegisterType<IBaseRepository<Basket>, SQLRepository<Basket>>();
-            container.RegisterType<IBaseRepository<BasketItem>, SQLRepository<BasketItem>>();
-            container.RegisterType<IBaseRepository<Customer>, SQLRepository<Customer>>();
-            container.RegisterType<IBasketService, BasketService>();
         }
     }
 }

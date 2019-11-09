@@ -52,7 +52,7 @@
             </dd>
 
             <dt></dt>
-            <dd><a href="#" class="btn btn-success">Add to basket</a></dd>
+            <a href="@Url.Action("AddToBasket","Baskets", new {Id = Model.Id})" class="btn btn-success">Add to basket</a>
             <dt></dt>
             @Html.ActionLink("Back to List", "Index")
             <dd></dd>
